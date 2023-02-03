@@ -4,7 +4,7 @@ import { tickCounter } from './lib/tickCounter.js';
 import { global } from './lib/global.js';
 import Character from './Character.js';
 import Platform from './Platform.js';
-import Alf from './Alf.js';
+import Bob from './Bob.js';
 
 function main() {
 
@@ -23,7 +23,7 @@ function main() {
         element: document.body,
         engine: engine,
         options: {
-            width: 1000,
+            width: 1500,
             height: 700,
             wireframes: false
         }
@@ -57,25 +57,25 @@ function main() {
     const player = new Character(50, 50, 50, 50);
 
     const ground = new Platform(100, 600, 400, 30);
+    ground.body.render.fillStyle = '#00ff00'
     ground.add();
 
-    const platform1 = new Platform(500, 500, 300, 30);
-    platform1.body.render.fillStyle = '#ff00f0';
-    platform1.add();
+    const ground2 = new Platform(900, 600, 400, 30);
+    ground2.body.render.fillStyle = '#00ff00'
+    ground2.add();
 
-    const trickPlatform = new Platform(600, 200, 200, 20);
-    trickPlatform.group = 'trick';
-    trickPlatform.add();
+    const platform1 = new Platform(500, 100, 50, 400)
+    platform1.body.render.fillStyle = '#FF0000'
+    platform1.add()
 
-    const myplayer = new Alf();
-    myplayer.add();
+    const platform2 = new Platform(500, 700, 50, 400)
+    platform2.body.render.fillStyle = '#FF0000'
+    platform2.add()
 
-    // const pipe1 = new Pipe();
-    // pipe1.add();
 
-    // const pipe2 = new Pipe();
-    // Matter.Body.setPosition(pipe2.body, { x: pipe2.body.position.x, y: 600 })
-    // pipe2.add();
+    const myplayer = new Bob()
+    myplayer.add()
+
 
 }
 window.onload = main;

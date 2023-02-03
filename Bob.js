@@ -4,52 +4,50 @@ import { keyMap } from "./lib/keyMap.js";
 import collisions from './collisions.js';
 import getByGroup from './lib/getByGroup.js';
 
-class Alf extends Entity {
+class Bob extends Entity {
     constructor() {
         super()
 
-        this.body = Matter.Bodies.rectangle(40, 60, 30, 30, {
+        this.body = Matter.Bodies.rectangle(40, 60, 50, 50, {
             collisionFilter: {
                 category: collisions.character, // The collision category this entity belongs to
                 mask: collisions.ground // The collision categories this entity collides with
             },
             render: {
-                sprite: {
-                    texture: 'itsame.jpg',
-                    xScale: 0.5,
-                    yScale: 0.5
-                }
+                fillStyle: '#0f77ae'
             },
             label: this.key,
-            density: 0.01,
+            density: 0.1
         })
+
 
     }
 
     tick() {
-        if (keyMap['ArrowRight'] === true) {
+        console.log('hello')
+        
+        if(keyMap['ArrowRight'] === true) {
 
-            Matter.Body.applyForce(this.body, this.body.position, { x: 0.01, y: 0 })
-
+                Matter.Body.applyForce(this.body, this.body.position, {x: 1, y: 0})
         }
 
-        if (keyMap['ArrowLeft'] === true) {
+        if(keyMap['ArrowLeft'] === true) {
 
-            Matter.Body.applyForce(this.body, this.body.position, { x: -0.01, y: 0 })
+                Matter.Body.applyForce(this.body, this.body.position, {x: -1, y: 0})
         }
 
-    
         if (Matter.Query.collides(this.body, getByGroup('platform').bodies).length > 0) {
 
-            if (keyMap['ArrowUp'] === true) {
+            if(keyMap['ArrowUp'] === true) {
 
-                Matter.Body.applyForce(this.body, this.body.position, { x: 0, y: -0.5 })
-    
+                Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -10})
             }
 
         }
 
+
     }
+
 }
 
-export default Alf
+    export default Bob;
